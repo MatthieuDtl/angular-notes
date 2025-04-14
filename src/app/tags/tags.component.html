@@ -1,0 +1,12 @@
+<ul>
+  @for(tag of tags; track $index) {
+    <li>
+      <app-tag [tag]="tag"></app-tag>
+    </li>
+  } @empty {
+    <li>Aucun tag !</li>
+  }
+</ul>
+
+
+<a href= "#" (click)="dialogAddTag($event)">Ajouter une nouvelle étiquette</a>
