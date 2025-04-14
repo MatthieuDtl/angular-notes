@@ -1,7 +1,7 @@
 export class Tag {
     id: number = 1;
     name: string;
-    color: string='#000000';
+    color: string='#FF0000';
 
     constructor(name:string){
         this.name=name;

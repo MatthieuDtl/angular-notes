@@ -29,6 +29,14 @@ export class TagsComponent {
       if (tagName && tagName.trim() !== ''){
         const newTag : Tag = new Tag(tagName);
         this.storage.addTag(newTag);
+      }
+    }
+    
+    deleteTag(tagToDelete: Tag): void {
+      const confirmDelete = window.confirm(`Supprimer le tag "${tagToDelete.name}" ?`);
+      if (confirmDelete) {
+        this.loaded = false; 
+        this.storage.deleteTag(tagToDelete); 
         this.loadTags();
       }
     }

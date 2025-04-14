@@ -23,4 +23,9 @@ export class StorageService {
     this.tags.push(tag);
     localStorage.setItem(this.TAGS_KEY, JSON.stringify(this.tags));
   }
+
+  deleteTag(tagToDelete: Tag): void {
+    this.tags = this.tags.filter(tag => tag.name !== tagToDelete.name);
+    localStorage.setItem(this.TAGS_KEY, JSON.stringify(this.tags));
+  }
 }

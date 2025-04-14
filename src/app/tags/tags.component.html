@@ -2,6 +2,7 @@
   @for(tag of tags; track $index) {
     <li>
       <app-tag [tag]="tag"></app-tag>
+      <button (click)="deleteTag(tag)">🗑️</button>
     </li>
   } @empty {
     <li>Aucun tag !</li>
