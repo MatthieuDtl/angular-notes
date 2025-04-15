@@ -8,5 +8,8 @@ import { Tag } from '../tag';
   styleUrl: './tag.component.css'
 })
 export class TagComponent {
-  tag = input<Tag>({ id: 0, name: 'Tag', color: '#000000' });
+  public id = input<number>(1);
+  public name = input<string>("Tag");
+  public color = input<string>("#FF0000");
+  
 }

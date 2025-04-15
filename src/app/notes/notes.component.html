@@ -1,0 +1,21 @@
+<ul>
+    @for(note of notes; track $index){
+        <li><app-note 
+            [id]="note.id" 
+            [name]="note.title" 
+            [color]="note.color" 
+            [isChecklist]="note.isChecklist"
+            [checklist]="note.checklist"
+            [checked]="note.checked"
+            [contenu]="note.contenu"
+            ></app-note></li>
+        <div class="note-actions">
+            
+        </div>
+    }@empty {
+        <li>No notes available</li>
+    }
+
+</ul>
+
+<a href= "#" (click)="dialogAddTag($event)">Ajouter une nouvelle note</a>

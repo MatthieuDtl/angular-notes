@@ -1,0 +1,16 @@
+<div class="note" [style.background-color]="color()">
+    <span class="note-name">{{ name() }}</span>
+    <span class="note-id">ID: {{ id() }}</span>
+    <span class="note-content">{{ contenu() }}</span>
+    <div *ngIf="isChecklist()">
+      <ul>
+        <li *ngFor="let item of checklist()">{{ item }}</li>
+      </ul>
+    </div>
+    <div *ngIf="checked().length > 0">
+      <ul>
+        <li *ngFor="let item of checked(); let i = index">{{ item ? 'Checked' : 'Unchecked' }} - {{ checklist()[i] }}</li>
+      </ul>
+    </div>
+  </div>
+  

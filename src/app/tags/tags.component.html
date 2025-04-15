@@ -1,13 +1,30 @@
-<ul>
-  @for(tag of tags; track $index) {
-    <li>
-      <app-tag [tag]="tag"></app-tag>
-      <button (click)="deleteTag(tag)">🗑️</button>
-    </li>
-  } @empty {
-    <li>Aucun tag !</li>
+@if (editing) {
+  <form (ngSubmit)="submitTag()">
+    <label>
+      Nom :
+      <input type="text" name="name" [(ngModel)]="editing.name" required />
+    </label>
+    <label>
+      Couleur :
+      <input type="color" name="color" [(ngModel)]="editing.color" />
+    </label>
+  
+    <button type="submit">Valider</button>
+    <button type="button" (click)="cancelEdit()">Annuler</button>
+  </form>
   }
-</ul>
 
-
-<a href= "#" (click)="dialogAddTag($event)">Ajouter une nouvelle étiquette</a>
+  <ul>
+    @for(tag of tags; track $index) {
+      <li (dblclick)="editTag(tag)">
+        <app-tag [name]="tag.name" [color]="tag.color" [id]="tag.id"></app-tag>
+        <button (click)="deleteTag(tag)">🗑️</button>
+      </li>
+    } @empty {
+      <li>Aucun tag !</li>
+    }
+  </ul>
+  
+  
+  <a href= "#" (click)="dialogAddTag($event)">Ajouter une nouvelle étiquette</a>
+  

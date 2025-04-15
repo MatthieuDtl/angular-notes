@@ -5,7 +5,6 @@ export class Tag {
 
     constructor(name:string){
         this.name=name;
-        this.id+1;
     }
 }
 
