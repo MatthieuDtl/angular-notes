@@ -8,11 +8,9 @@ import { Component, input } from '@angular/core';
 })
 export class NoteComponent {
   public id = input<number>(1);
-  public name = input<string>("Note");
+  public title = input<string>("Note");
   public color = input<string>("#FF0000");
-  public isChecklist = input<boolean>(false);
-  public checklist = input<string[]>([]);
-  public checked = input<boolean[]>([]);
   public contenu = input<string>("Contenu");
+  public tags = input<string[]>([]);
 
 }

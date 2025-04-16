@@ -56,7 +56,7 @@ export class StorageService {
   }
   
   deleteNote(noteToDelete: Note): void {
-    this.notes = this.notes.filter(note => note.id !== noteToDelete.id);
+    this.notes = this.notes.filter(note => note.title !== noteToDelete.title);
     localStorage.setItem(this.NOTES_KEY, JSON.stringify(this.notes));
   }
   

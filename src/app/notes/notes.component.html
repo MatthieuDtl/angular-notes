@@ -1,21 +1,43 @@
+@if (editing) {
+    <form (ngSubmit)="submitNote()">
+      <label>
+        Nom :
+        <input type="text" name="name" [(ngModel)]="editing.title" required />
+      </label>
+    <label>
+      Couleur :
+      <input type="color" name="color" [(ngModel)]="editing.color" />
+    </label>
+    <label>
+      </label>
+
+    
+    
+    <button type="submit">Valider</button>
+    <button type="button" (click)="cancelEditNote()">Annuler</button>
+    </form>
+    }
+
 <ul>
     @for(note of notes; track $index){
-        <li><app-note 
+        <li (dblclick)="editNote(note)"><app-note 
             [id]="note.id" 
-            [name]="note.title" 
+            [title]="note.title" 
             [color]="note.color" 
-            [isChecklist]="note.isChecklist"
-            [checklist]="note.checklist"
-            [checked]="note.checked"
             [contenu]="note.contenu"
-            ></app-note></li>
+            ></app-note>
+            <button (click)="deleteNote(note)">🗑️</button>
+        </li>
         <div class="note-actions">
+
             
         </div>
     }@empty {
-        <li>No notes available</li>
+        <li>Aucune Note !</li>
     }
 
 </ul>
 
-<a href= "#" (click)="dialogAddTag($event)">Ajouter une nouvelle note</a>
+<a href= "#" (click)="dialogAddNote($event)">Ajouter une nouvelle note</a>
+
+
