@@ -3,6 +3,7 @@ import { StorageService } from '../storage.service';
 import { Note } from '../note';
 import { NoteComponent } from '../note/note.component';
 import { FormsModule } from '@angular/forms';
+import { Tag } from '../tag';
 
 @Component({
   selector: 'app-notes',
@@ -15,9 +16,15 @@ export class NotesComponent {
   loaded: boolean = false;
   notes: Note[] = [];
   editing: Note | null = null;
+  creating: Note | null = null;
+  availableTags: Tag[] = [];
+  selectedTagId: number | null = null;
 
   constructor(private storage: StorageService){
       this.loadNotes();
+      this.notes = this.storage.getNotes();
+      this.availableTags = this.storage.getTags();
+      console.log('Tags disponibles :', this.availableTags);
     }
 
     loadNotes(): void {
@@ -66,5 +73,26 @@ export class NotesComponent {
         this.loadNotes();
       }
 
+      removeTagFromNote(tagIndex: number): void {
+        if (this.creating) {
+          this.creating.tags.splice(tagIndex, 1);
+        } else if (this.editing) {
+          this.editing.tags.splice(tagIndex, 1);
+        }
+      }
+
+      addTagToNote(): void {
+        if (!this.selectedTagId) return;
+    
+        const tagToAdd = this.availableTags.find(tag => tag.id === this.selectedTagId);
+        if (tagToAdd) {
+          const target = this.creating ?? this.editing;
+          if (target && !target.tags.some(tag => tag.id === tagToAdd.id)) {
+            target.tags.push(tagToAdd);
+          }
+        }
+    
+        this.selectedTagId = null;
+      }
 
 }

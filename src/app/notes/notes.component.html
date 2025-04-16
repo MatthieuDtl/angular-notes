@@ -8,8 +8,18 @@
       Couleur :
       <input type="color" name="color" [(ngModel)]="editing.color" />
     </label>
-    <label>
-      </label>
+    <div>
+      <label>Tags :</label>
+      <div *ngFor="let tag of editing.tags; let idx = index">
+        <span>{{ tag.name }}</span>
+        <button type="button" (click)="removeTagFromNote(idx)">Supprimer</button>
+      </div>
+      <select [(ngModel)]="selectedTagId">
+        <option [value]="null" disabled selected>Choisir un tag</option>
+        <option *ngFor="let tag of availableTags" [value]="tag.id">{{ tag.name }}</option>
+      </select>
+      <button type="button" (click)="addTagToNote()">Ajouter un tag</button>
+    </div>
 
     
     

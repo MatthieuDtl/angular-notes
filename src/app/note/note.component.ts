@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { Tag } from '../tag';
 
 @Component({
   selector: 'app-note',
@@ -11,6 +12,6 @@ export class NoteComponent {
   public title = input<string>("Note");
   public color = input<string>("#FF0000");
   public contenu = input<string>("Contenu");
-  public tags = input<string[]>([]);
+  public tags = input<Tag[]>([]);
 
 }
